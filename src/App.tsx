@@ -1,8 +1,18 @@
-import React from 'react'
+import { Outlet } from 'react-router'
+import Navbar from './components/layouts/Navbar'
 
 function App() {
   return (
-    <div className='text-5xl text-red-900'>App <button className='btn btn-primary'>test</button></div>
+    <>
+       {/* navbar */}
+        <nav className='container px-6 py-8'>
+           <Navbar/>
+        </nav>
+        {/* main */}
+      <main className='container mx-auto'>
+         <Outlet/>
+      </main>
+    </>
   )
 }
 
