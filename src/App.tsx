@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router'
 import Navbar from './components/layouts/Navbar'
+import FooterComp from './components/layouts/FooterComp'
 
 function App() {
   return (
@@ -9,9 +10,11 @@ function App() {
            <Navbar/>
         </nav>
         {/* main */}
-      <main className='container mx-auto'>
+      <main className='container mx-auto min-h-dvh px-6'>
          <Outlet/>
       </main>
+      {/* footer */}
+      <FooterComp/>
     </>
   )
 }
