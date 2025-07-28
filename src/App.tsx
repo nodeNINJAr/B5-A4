@@ -2,7 +2,11 @@ import { Outlet } from 'react-router'
 import Navbar from './components/layouts/Navbar'
 import FooterComp from './components/layouts/FooterComp'
 
+
 function App() {
+
+
+  // 
   return (
     <>
        {/* navbar */}

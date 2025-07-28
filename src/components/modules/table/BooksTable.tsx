@@ -1,10 +1,13 @@
 import React from 'react'
+import type { IBook } from '../../../types';
+import ActionComp from '../actionComp/ActionComp';
 
 
 
-// 
-const BooksTable = ({books}) => {
 
+
+
+const BooksTable = ({ books }: { books: IBook[] }) => {
 
     // 
     return (
@@ -36,6 +39,7 @@ const BooksTable = ({books}) => {
                         <td>{book?.isbn}</td>
                         <td>{book?.copies}</td>
                         <td>{book?.available ? "Yes" : "No"}</td>
+                        <td><ActionComp bookData={book}/></td>
                     </tr>
                 </tbody>
               ))

@@ -1,18 +1,40 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { IBook } from "../../types";
 
 
-// Define a service using a base URL and expected endpoints
+
+// Create the API
 export const bookApi = createApi({
   reducerPath: 'bookApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-  tagTypes:["book"],
+  tagTypes: ['book'],
   endpoints: (builder) => ({
-    getBooks: builder.query({
-      query: () => `/books`,
-      providesTags:["book"],
+    // GET all books
+    getBooks: builder.query<IBook[], void>({
+      query: () => '/books',
+      providesTags: ['book'],
+    }),
+    
+    // add book
+    addBook: builder.mutation({
+      query: (data) => ({
+        url: `/books`,
+        method: 'POST',
+        body:data,
+      }),
+      invalidatesTags: ['book'],
+    }),
+
+    // DELETE a book by ID
+    deleteBook: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/books/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['book'],
     }),
   }),
-})
+});
 
-
-export const {useGetBooksQuery} = bookApi;
+// Export hooks
+export const { useGetBooksQuery, useDeleteBookMutation , useAddBookMutation} = bookApi;
