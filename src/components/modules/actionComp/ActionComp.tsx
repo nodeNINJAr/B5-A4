@@ -2,18 +2,16 @@ import { CircleFadingArrowUp, DiamondPlus } from "lucide-react"
 import type { IBook } from "../../../types";
 import { useDeleteBookMutation } from "../../../redux/api/bookApi";
 import DeleteModal from "../modal/DeleteModal";
+import { Link } from "react-router";
 
 
 const ActionComp = ({ bookData }: { bookData: IBook }) => {
 
-   
-const [deleteItem, {isLoading,isSuccess,isError}] = useDeleteBookMutation()
-
- console.log(bookData, isSuccess, isError);
+const [deleteItem, {isLoading,isSuccess}] = useDeleteBookMutation()
 
 
 
-
+// 
  const handleDelete = (bool:boolean)=>{
          console.log(bool);  
           if(bool===true){
@@ -31,7 +29,8 @@ const [deleteItem, {isLoading,isSuccess,isError}] = useDeleteBookMutation()
   return (
     <div className="flex justify-center items-center gap-4">
           <DeleteModal handleDelete={handleDelete} isLoading={isLoading} isSuccess={isSuccess} />
-          <button className="cursor-pointer" onClick={()=>handleUpdate(bookData?._id)}><CircleFadingArrowUp className="text-green-500" /></button>
+          <button className="cursor-pointer" onClick={()=>handleUpdate(bookData?._id)}></button>
+          <Link to={`/edit-book/${bookData._id}`} state={{initialData:bookData}}><CircleFadingArrowUp className="text-green-500" /></Link>
           <button className="btn btn-primary">Borrow<DiamondPlus className="w-6" /></button>
     </div>
   )
