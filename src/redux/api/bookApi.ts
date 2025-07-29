@@ -7,7 +7,7 @@ import type { IBook } from "../../types";
 export const bookApi = createApi({
   reducerPath: 'bookApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-  tagTypes: ['book'],
+  tagTypes: ['book',"borrow"],
   endpoints: (builder) => ({
     // GET all books
     getBooks: builder.query<IBook[], void>({
@@ -28,7 +28,7 @@ export const bookApi = createApi({
       invalidatesTags: ['book'],
     }),
 
-     // get one book dat
+     // get one book data
       updateBook: builder.mutation({
       query: ({id, ...bookData}) => ({
         url:`/books/${id}`,
@@ -53,10 +53,17 @@ export const bookApi = createApi({
         method: 'POST',
         body: borrowData,
       }),
-      invalidatesTags: ['book'],
+      invalidatesTags: ['borrow'],
+    }),
+
+
+    // GET borrowd books
+    getBorrowdBooks: builder.query({
+      query: () => '/borrow',
+      providesTags: ['borrow'],
     }),
   }),
 });
 
 // Export hooks
-export const { useGetBooksQuery, useDeleteBookMutation , useAddBookMutation, useGetBookQuery, useUpdateBookMutation, useBorrowBookMutation } = bookApi;
+export const { useGetBooksQuery, useDeleteBookMutation , useAddBookMutation, useGetBookQuery, useUpdateBookMutation, useBorrowBookMutation, useGetBorrowdBooksQuery } = bookApi;

@@ -24,3 +24,14 @@ export interface IBorrow {
   copies:number;
   duedate:string
 }
+export interface IBorrowTable {
+  borrowData: {
+    data: {
+      book?: {
+        title?: string;
+        isbn?: string;
+      };
+      totalQuantity?: number;
+    }[];
+  };
+}
