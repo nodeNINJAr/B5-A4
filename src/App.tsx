@@ -9,10 +9,10 @@ function App() {
   // 
   return (
     <>
-       {/* navbar */}
-        <nav className='container px-6 py-8'>
-           <Navbar/>
-        </nav>
+      {/* navbar */}
+      <nav className='container px-6 py-8'>
+          <Navbar/>
+      </nav>
         {/* main */}
       <main className='container mx-auto min-h-dvh px-6'>
          <Outlet/>

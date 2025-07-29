@@ -18,3 +18,9 @@ export interface IBookForm {
   copies: number;
   available: boolean;
 };
+
+export interface IBorrow {
+  bookId:string;
+  copies:number;
+  duedate:string
+}

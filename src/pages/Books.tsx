@@ -20,8 +20,8 @@ const {data:books, isLoading} = useGetBooksQuery(undefined);
     <div>
         <div className='flex justify-between gap-5 items-center'><h2 className=''>All Books Here</h2> <button className='btn btn-accent'>Add Books</button></div>
          {/*  */}
-          {books.data.length > 0 ? <>
-             <BooksTable books={books.data}/>
+          {books?.data?.length > 0 ? <>
+             <BooksTable books={books?.data ?? []}/>
           </> :
            <p className='flex justify-center items-center min-h-dvh text-red-600 text-3xl font-semibold'>No Books found</p>
           }
