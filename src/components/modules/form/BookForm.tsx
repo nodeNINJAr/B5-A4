@@ -39,24 +39,24 @@ const BookForm = () => {
 
   //   
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto p-6 bg-base-200 rounded-lg shadow">
-      <h2 className="text-2xl font-bold mb-4">Add New Book</h2>
+    <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow text-[#121212]">
+      <h2 className="text-2xl font-bold mb-4 ">Add New Book</h2>
 
       <div className="form-control mb-3 flex flex-col gap-1 w-full">
         <label className="label">Title</label>
-        <input {...register('title', { required: 'Title is required' })} className="input input-bordered  w-full" />
+        <input {...register('title', { required: 'Title is required' })} placeholder='Enter Book Tiile' className="input input-bordered  w-full bg-gray-50 mt-1" />
         {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
       </div>
 
       <div className="form-control mb-3">
         <label className="label">Author</label>
-        <input {...register('author', { required: 'Author is required' })} className="input input-bordered  w-full mt-1" />
+        <input placeholder='Enter Author Name' {...register('author', { required: 'Author is required' })} className="input input-bordered   w-full bg-gray-50 mt-1" />
         {errors.author && <p className="text-red-500 text-sm">{errors.author.message}</p>}
       </div>
 
       <div className="form-control mb-3">
         <label className="label">Select a Book Genre</label>
-        <select className="input input-bordered  w-full mt-1" {...register('genre', { required: 'Genre is required' })}>
+        <select className="input input-bordered   w-full bg-gray-50 mt-1" {...register('genre', { required: 'Genre is required' })}>
             <option disabled={true}>Pick a Genre</option>
             <option value={"FICTION"}>FICTION</option>
             <option value={"NON_FICTION"}>NON_FICTION</option>
@@ -70,13 +70,13 @@ const BookForm = () => {
 
       <div className="form-control mb-3">
         <label className="label">ISBN</label>
-        <input {...register('isbn')} className="input input-bordered w-full mt-1" />
+        <input placeholder='Enter Book ISBN ID' {...register('isbn')} className="input input-bordered  w-full bg-gray-50 mt-1" />
         {errors.isbn && <p className="text-red-500 text-sm">{errors.isbn.message}</p>}
       </div>
 
       <div className="form-control mb-3">
         <label className="label">Description</label>
-        <textarea {...register('description')} className="textarea textarea-bordered w-full mt-1" />
+        <textarea placeholder='Enter Book Description' {...register('description')} className="textarea textarea-bordered  w-full bg-gray-50 mt-1" />
         {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
       </div>
 
@@ -92,7 +92,7 @@ const BookForm = () => {
                 min: { value: 1, message: 'Minimum 1 copy' },
                 valueAsNumber: true,
             })}
-            className="input input-bordered w-full mt-1"
+            className="input input-bordered  w-full bg-gray-50 mt-1"
             />
             {errors.copies && <p className="text-red-500 text-sm">{errors.copies.message}</p>}
         </div>

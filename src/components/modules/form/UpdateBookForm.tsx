@@ -49,12 +49,12 @@ const initialData = state.initialData;
 
 //   
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto p-6 bg-base-200 rounded-lg shadow">
+    <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto p-6 bg-white text-[#121212] rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4">Update Book</h2>
 
       <div className="form-control mb-3">
         <label className="label">Book Title</label>
-        <input {...register('title', { required: 'Title is required' })} className="input input-bordered w-full mt-1" />
+        <input {...register('title', { required: 'Title is required' })} className="input input-bordered w-full mt-1 bg-gray-50" />
         {errors.title?.message && typeof errors.title.message === 'string' && (
           <p className="text-red-500 text-sm">{errors.title.message}</p>
         )}
@@ -62,7 +62,7 @@ const initialData = state.initialData;
 
       <div className="form-control mb-3">
         <label className="label">Author</label>
-        <input {...register('author', { required: 'Author is required' })} className="input input-bordered w-full mt-1" />
+        <input {...register('author', { required: 'Author is required' })} className="input input-bordered w-full mt-1 bg-gray-50" />
         {errors.author?.message && typeof errors.author.message === 'string' && (
           <p className="text-red-500 text-sm">{errors.author.message}</p>
         )}
@@ -70,7 +70,7 @@ const initialData = state.initialData;
 
       <div className="form-control mb-3">
         <label className="label">Genre</label>
-        <input {...register('genre', { required: 'Genre is required' })} className="input input-bordered w-full mt-1" />
+        <input {...register('genre', { required: 'Genre is required' })} className="input input-bordered w-full mt-1 bg-gray-50" />
         {errors.genre?.message && typeof errors.genre.message === 'string' && (
           <p className="text-red-500 text-sm">{errors.genre.message}</p>
         )}
@@ -78,7 +78,7 @@ const initialData = state.initialData;
 
       <div className="form-control mb-3">
         <label className="label">ISBN</label>
-        <input {...register('isbn', { required: 'ISBN is required' })} className="input input-bordered w-full mt-1" />
+        <input {...register('isbn', { required: 'ISBN is required' })} className="input input-bordered w-full mt-1 bg-gray-50" />
         {errors.isbn?.message && typeof errors.isbn.message === 'string' && (
           <p className="text-red-500 text-sm">{errors.isbn.message}</p>
         )}
@@ -86,7 +86,7 @@ const initialData = state.initialData;
 
       <div className="form-control mb-3">
         <label className="label">Description</label>
-        <textarea {...register('description', { required: 'Description is required' })} className="textarea textarea-bordered w-full mt-1" />
+        <textarea {...register('description', { required: 'Description is required' })} className="textarea textarea-bordered w-full mt-1 bg-gray-50" />
         {errors.description?.message && typeof errors.description.message === 'string' && (
           <p className="text-red-500 text-sm">{errors.description.message}</p>
         )}
@@ -102,7 +102,7 @@ const initialData = state.initialData;
             min: { value: 0, message: 'Minimum 0 copy' },
             valueAsNumber: true,
           })}
-          className="input input-bordered w-full mt-1"
+          className="input input-bordered w-full mt-1 bg-gray-50"
         />
         {errors.copies?.message && typeof errors.copies.message === 'string' && (
           <p className="text-red-500 text-sm">{errors.copies.message}</p>

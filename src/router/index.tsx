@@ -4,12 +4,17 @@ import Books from "../pages/Books";
 import CreateBooks from "../pages/CreateBooks";
 import BookDetails from "../pages/BookDetails";
 import BorrowSummary from "../pages/BorrowSummary";
+import LandingPage from "../pages/LandingPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component:App,
     children:[
+        {
+            path:'/',
+            Component:LandingPage,  
+          },
           {
           path:'/books',
           Component:Books,  

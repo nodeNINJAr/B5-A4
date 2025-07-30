@@ -1,8 +1,12 @@
-import React from 'react'
+import { Library } from 'lucide-react'
 import { NavLink } from 'react-router'
 
+
+
+// 
 const Navbar = () => {
 
+    // 
 const links = <>
          <li>
             <NavLink to={'/'}>Home</NavLink>
@@ -21,14 +25,26 @@ const links = <>
 
   // 
   return (
-    <div className='flex justify-between items-center gap-6 bg-white backdrop-blur-lg px-6 py-5 rounded-xl'>
-        <div className='text-black'>Navbar</div>
-         <div>
-            <ul className='flex justify-center items-center gap-5 text-black font-medium'>
+      <header className="bg-white shadow-sm border-b border-gray-100 backdrop-blur-lg px-6 py-0 rounded-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-xl">
+                <Library className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">LibraryHub</h1>
+                <p className="text-sm text-gray-600">Digital Library Management</p>
+              </div>
+            </div>
+            <nav className="hidden md:flex items-center gap-8">
+               <ul className='flex justify-center items-center gap-5 text-black font-medium'>
                {links}
             </ul>
+            </nav>
+          </div>
         </div>
-    </div>
+      </header>
   )
 }
 

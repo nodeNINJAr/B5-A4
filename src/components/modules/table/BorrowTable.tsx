@@ -7,9 +7,9 @@ const BorrowTable = ({ borrowData }: IBorrowTable) => {
     // 
   return (
    <div className="overflow-x-auto">
-  <table className="table">
+  <table className="table  text-[#121212]">
     {/* head */}
-    <thead>
+    <thead className="text-[#121212] bg-blue-100">
       <tr>
         <th>Index</th>
         <th>Title</th>
@@ -17,7 +17,7 @@ const BorrowTable = ({ borrowData }: IBorrowTable) => {
         <th>Total Quantity</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className="bg-blue-50">
     {borrowData?.data?.map((item, i: number) => (
         <tr key={i}>
             <th>{i + 1}</th>

@@ -26,7 +26,7 @@ const renderForm =()=>{
   // 
   return (
     <div className='space-y-10 py-14'>
-       <h2 className='text-center text-4xl font-bold'>{pathname==="/create-book" && "Create a New Book" || pathname === `/edit-book/${id?.id}`&& "Update Your Existing Book" ||  pathname === `/borrow/${id?.bookId}`&& "Borrow Your fav Book" }</h2>
+       <h2 className='text-center text-4xl font-bold text-[#121212]'>{pathname==="/create-book" && "Create a New Book" || pathname === `/edit-book/${id?.id}`&& "Update Your Existing Book" ||  pathname === `/borrow/${id?.bookId}`&& "Borrow Your fav Book" }</h2>
         {renderForm()}
     </div>
   )

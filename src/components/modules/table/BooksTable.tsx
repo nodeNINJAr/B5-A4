@@ -9,10 +9,10 @@ const BooksTable = ({ books }: { books: IBook[] }) => {
     // 
     return (
         <div className="overflow-x-auto mt-8">
-        <table className="table">
+        <table className="table text-[#121212]">
             {/* head */}
             <thead className='mb-3'>
-            <tr>
+            <tr className='text-[#121212]'>
                 <th>Index</th>
                 <th>Title</th>
                 <th>Author</th>
@@ -28,7 +28,7 @@ const BooksTable = ({ books }: { books: IBook[] }) => {
               books?.map((book, idx) =>(
                  <tbody key={book?._id}>
                     {/* row 1 */}
-                        <tr>
+                        <tr className='bg-blue-50'>
                      
                             <th>{idx+1}</th>
                             <td>{book?.title}</td>

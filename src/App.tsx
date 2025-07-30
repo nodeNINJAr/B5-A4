@@ -8,7 +8,7 @@ function App() {
 
   // 
   return (
-    <>
+    <div className=' bg-gradient-to-br from-blue-50 via-white to-indigo-50'>
       {/* navbar */}
       <nav className='container px-6 py-8'>
           <Navbar/>
@@ -19,7 +19,7 @@ function App() {
       </main>
       {/* footer */}
       <FooterComp/>
-    </>
+    </div>
   )
 }
 
