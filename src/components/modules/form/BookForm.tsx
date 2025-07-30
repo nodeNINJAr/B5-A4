@@ -1,8 +1,9 @@
 import { useForm, type FieldValues, type SubmitHandler } from 'react-hook-form';
 import { useAddBookMutation } from '../../../redux/api/bookApi';
-import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import type { IBookForm } from '../../../types';
+import Loader from '../loader/Loader';
+
 
 
 // 
@@ -22,7 +23,6 @@ const BookForm = () => {
 
   //   
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     // 
     try {
       await addBook(data).unwrap();
@@ -50,25 +50,33 @@ const BookForm = () => {
 
       <div className="form-control mb-3">
         <label className="label">Author</label>
-        <input {...register('author', { required: 'Author is required' })} className="input input-bordered  w-full" />
+        <input {...register('author', { required: 'Author is required' })} className="input input-bordered  w-full mt-1" />
         {errors.author && <p className="text-red-500 text-sm">{errors.author.message}</p>}
       </div>
 
       <div className="form-control mb-3">
-        <label className="label">Genre</label>
-        <input {...register('genre', { required: 'Genre is required' })} className="input input-bordered  w-full" />
+        <label className="label">Select a Book Genre</label>
+        <select className="input input-bordered  w-full mt-1" {...register('genre', { required: 'Genre is required' })}>
+            <option disabled={true}>Pick a Genre</option>
+            <option value={"FICTION"}>FICTION</option>
+            <option value={"NON_FICTION"}>NON_FICTION</option>
+            <option value={"SCIENCE"}>SCIENCE</option>
+            <option value={"HISTORY"}>HISTORY</option>
+            <option value={"BIOGRAPHY"}>BIOGRAPHY</option>
+            <option value={"FANTASY"}>FANTASY</option>
+          </select>
         {errors.genre && <p className="text-red-500 text-sm">{errors.genre.message}</p>}
       </div>
 
       <div className="form-control mb-3">
         <label className="label">ISBN</label>
-        <input {...register('isbn', { required: 'ISBN is required' })} className="input input-bordered w-full" />
+        <input {...register('isbn')} className="input input-bordered w-full mt-1" />
         {errors.isbn && <p className="text-red-500 text-sm">{errors.isbn.message}</p>}
       </div>
 
       <div className="form-control mb-3">
         <label className="label">Description</label>
-        <textarea {...register('description', { required: 'Description is required' })} className="textarea textarea-bordered w-full" />
+        <textarea {...register('description')} className="textarea textarea-bordered w-full mt-1" />
         {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
       </div>
 
@@ -84,23 +92,17 @@ const BookForm = () => {
                 min: { value: 1, message: 'Minimum 1 copy' },
                 valueAsNumber: true,
             })}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full mt-1"
             />
             {errors.copies && <p className="text-red-500 text-sm">{errors.copies.message}</p>}
         </div>
 
-        <div className="form-control mb-4 w-1/2 flex justify-end items-center">
-            <label className="cursor-pointer label justify-start gap-4">
-            <input type="checkbox" {...register('available')} className="checkbox" />
-            <span className="label-text">Available</span>
-            </label>
-        </div>
        {/*  */}
      </div>
 
       {/*  */}
-      <button type="submit" className="btn btn-primary w-full" disabled={isLoading}>
-        {isLoading ? <Loader2/> : 'Submit'}
+      <button type="submit" className="btn btn-primary w-full mt-2" disabled={isLoading}>
+        {isLoading ? <Loader/> : 'Submit'}
       </button>
     </form>
   );

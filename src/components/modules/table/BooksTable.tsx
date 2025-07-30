@@ -1,12 +1,9 @@
-import React from 'react'
 import type { IBook } from '../../../types';
 import ActionComp from '../actionComp/ActionComp';
 
 
 
-
-
-
+// 
 const BooksTable = ({ books }: { books: IBook[] }) => {
 
     // 
@@ -29,19 +26,21 @@ const BooksTable = ({ books }: { books: IBook[] }) => {
              {/* cols */}
              {
               books?.map((book, idx) =>(
-                <tbody key={book?._id}>
+                 <tbody key={book?._id}>
                     {/* row 1 */}
-                    <tr>
-                        <th>{idx+1}</th>
-                        <td>{book?.title}</td>
-                        <td>{book.author}</td>
-                        <td>{book?.genre}</td>
-                        <td>{book?.isbn}</td>
-                        <td>{book?.copies}</td>
-                        <td>{book?.available ? "Yes" : "No"}</td>
-                        <td><ActionComp bookData={book}/></td>
-                    </tr>
-                </tbody>
+                        <tr>
+                     
+                            <th>{idx+1}</th>
+                            <td>{book?.title}</td>
+                            <td>{book.author}</td>
+                            <td>{book?.genre}</td>
+                            <td>{book?.isbn}</td>
+                            <td>{book?.copies}</td>
+                            <td>{book?.available ? "Yes" : "No"}</td>
+                            <td><ActionComp bookData={book}/></td>
+                      
+                        </tr>
+                     </tbody>
               ))
             }
         </table>

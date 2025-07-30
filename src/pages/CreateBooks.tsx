@@ -16,7 +16,7 @@ const renderForm =()=>{
     case `/edit-book/${id?.id}`:
       return <UpdateBookForm/>
     case `/borrow/${id?.bookId}`:
-      return <BorrowBookForm bookId={id?.bookId}/>
+      return <BorrowBookForm bookId={id?.bookId ?? ''} />
      default:
        return null
    }

@@ -35,6 +35,7 @@ export const bookApi = createApi({
         method:"PUT",
         body:bookData,
       }),
+      invalidatesTags:["book"]
     }),
 
     // DELETE a book by ID
@@ -43,7 +44,7 @@ export const bookApi = createApi({
         url: `/books/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['book'],
+      invalidatesTags: ['book','borrow'],
     }),
 
     // borrow book
@@ -53,7 +54,7 @@ export const bookApi = createApi({
         method: 'POST',
         body: borrowData,
       }),
-      invalidatesTags: ['borrow'],
+      invalidatesTags: ['borrow',"book"],
     }),
 
 

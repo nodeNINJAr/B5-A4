@@ -2,11 +2,10 @@ import { useForm, type FieldValues, type SubmitHandler } from 'react-hook-form';
 import { useBorrowBookMutation } from '../../../redux/api/bookApi';
 import { Loader2 } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router';
-import type { IBorrow } from '../../../types';
 
 
 // 
-const BorrowBookForm = ({ bookId }: IBorrow) => {
+const BorrowBookForm = ({ bookId }: { bookId: string }) => {
 
     // 
   const {
