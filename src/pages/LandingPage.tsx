@@ -1,11 +1,46 @@
 import { ArrowRight, Award, BookOpen, Library, Sparkles, Users } from 'lucide-react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { BookCard } from '../components/modules/bookcard/BookCard'
+import { SearchBar } from '../components/modules/searchbar/SearchBar';
+import { useState } from 'react';
+import { useGetBooksQuery } from '../redux/api/bookApi';
+import Loader from '../components/modules/loader/Loader';
 
 
 
 
 // 
 const LandingPage = () => {
+// 
+const navigate = useNavigate();
+
+// 
+const [searchTerm, setSearchTerm] = useState('');
+//  
+const [selectedGenre, setSelectedGenre] = useState('ALL');
+
+
+// 
+const onGenreChange = (data: "ALL" | "FANTASY" | "BIOGRAPHY" | "HISTORY" | "SCIENCE" | "NON_FICTION" | "FICTION"): void => {
+  setSelectedGenre(data);
+};
+
+
+const { data: books, isLoading } = useGetBooksQuery({
+  genre: selectedGenre,
+  search: searchTerm,
+});
+const bookArray = books?.data ?? []
+
+
+// 
+const onBookSelect = (id:string) =>{
+   navigate(`/books/${id}`);
+}
+
+if(isLoading) return <Loader/>
+
+  // 
   return (
     <div>
     {/* Hero Section */}
@@ -74,7 +109,7 @@ const LandingPage = () => {
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">10</h3>
                 <p className="text-gray-600">Total Copies</p>
                 </div>
-                <div className="text-center">
+                <div className="text-center" >
                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Award className="w-8 h-8 text-orange-600" />
                 </div>
@@ -84,6 +119,62 @@ const LandingPage = () => {
             </div>
             </div>
         </section>
+
+        {/* Featured Books */}
+        <section className="py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Books</h2>
+                <p className="text-xl text-gray-600">Discover our most popular and recommended reads</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {bookArray.slice(0,3)?.map(book => (
+                <BookCard
+                    key={book._id} 
+                    book={book} 
+                    onclick={onBookSelect} 
+                    
+                />
+                ))}
+            </div>
+            </div>
+        </section>
+        {/* search and browes */}
+              {/* Search and Browse */}
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Browse Our Collection</h2>
+            <p className="text-xl text-gray-600">Search through our extensive library catalog</p>
+          </div>
+          
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            selectedGenre={selectedGenre}
+            onGenreChange={onGenreChange}
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {bookArray?.map((book)=> (
+              <BookCard 
+                key={book._id} 
+                book={book} 
+                onclick={onBookSelect} 
+              />
+            ))}
+          </div>
+          
+          {bookArray?.length === 0 && (
+            <div className="text-center py-12">
+              <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">No books found</h3>
+              <p className="text-gray-500">Try adjusting your search criteria or browse different categories.</p>
+            </div>
+          )}
+        </div>
+      </section>
 
     </div>
   )

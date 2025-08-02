@@ -9,11 +9,28 @@ export const bookApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
   tagTypes: ['book',"borrow"],
   endpoints: (builder) => ({
-    // GET all books
-    getBooks: builder.query<IBook[], void>({
-      query: () => '/books',
-      providesTags: ['book'],
-    }),
+getBooks: builder.query<{ data: IBook[]}, { genre?: string; search?: string }>({
+  query: ({ genre = "ALL", search = "" } = {}) => {
+    const params = new URLSearchParams();
+      
+    console.log(genre, search);
+
+    if (genre && genre !== "ALL") {
+      params.append("genre", genre);
+    }
+
+    if (search.trim() !== "") {
+      params.append("search", search.trim());
+    }
+
+    const queryString = params.toString();
+    return queryString ? `/books?${queryString}` : '/books';
+  },
+  providesTags: ['book'],
+}),
+
+
+   
     // get one book dat
       getBook: builder.query<void, string>({
       query: (id) => `/books/${id}`,
