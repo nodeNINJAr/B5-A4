@@ -4,6 +4,7 @@ import BooksTable from '../components/modules/table/BooksTable';
 import { Link } from 'react-router';
 import { SearchBar } from '../components/modules/searchbar/SearchBar';
 import { useState } from 'react';
+import { BookOpen } from 'lucide-react';
 
 const Books = () => {
   // 
@@ -28,7 +29,7 @@ const Books = () => {
     return <Loader/>
   }
 
-
+console.log(books);
 
   // 
   return (
@@ -49,7 +50,12 @@ const Books = () => {
               <BooksTable books={books.data} />
             </>
           ) : (
-            <p className='flex justify-center items-center min-h-dvh text-red-600 text-3xl font-semibold'>No Books found</p>
+             
+            <div className="text-center py-12">
+              <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">No books found</h3>
+              <p className="text-gray-500">Try adjusting your search criteria or browse different categories.</p>
+            </div>
           )}
     </div>
   )

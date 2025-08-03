@@ -40,6 +40,9 @@ const onBookSelect = (id:string) =>{
 
 if(isLoading) return <Loader/>
 
+
+
+
   // 
   return (
     <div>
@@ -92,28 +95,31 @@ if(isLoading) return <Loader/>
                 <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <BookOpen className="w-8 h-8 text-blue-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">60</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">{books?.totalBooks}</h3>
                 <p className="text-gray-600">Total Books</p>
                 </div>
-                <div className="text-center">
-                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Library className="w-8 h-8 text-green-600" />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">20</h3>
-                <p className="text-gray-600">Available Now</p>
-                </div>
+                {/*  */}
                 <div className="text-center">
                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-purple-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">10</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">{books?.totalBookCopies}</h3>
                 <p className="text-gray-600">Total Copies</p>
                 </div>
+                {/*  */}
+                <div className="text-center">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Library className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">{books?.totalAvailCopies}</h3>
+                <p className="text-gray-600">Available Now</p>
+                </div>
+                 {/*  */}
                 <div className="text-center" >
                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Award className="w-8 h-8 text-orange-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">50+</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">7+</h3>
                 <p className="text-gray-600">Categories</p>
                 </div>
             </div>
@@ -157,7 +163,7 @@ if(isLoading) return <Loader/>
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {bookArray?.map((book)=> (
+            {bookArray.slice(0,8)?.map((book)=> (
               <BookCard 
                 key={book._id} 
                 book={book} 

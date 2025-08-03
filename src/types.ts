@@ -9,6 +9,13 @@ export interface IBook {
     copies: number;
     available: boolean;
 }
+export interface IBooks {
+      data: IBook[];
+      totalAvailCopies:number;
+      totalBookCopies:number;
+      totalBooks:number;
+}
+
 
 export interface IBookForm {
   title: string;

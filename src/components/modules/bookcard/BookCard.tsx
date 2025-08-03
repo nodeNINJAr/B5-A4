@@ -12,8 +12,8 @@ export const BookCard = ({ book, onclick}:BookCardProps) => {
       onClick={()=>onclick(book?._id)}
       className="relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden border border-gray-100"
     >
-      <div className=" z-10">
-        <div className="absolute top-3 right-3">
+      <div className="z-10">
+        <div className="absolute bottom-4 right-3">
           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
             book.available 
               ? 'bg-green-100 text-green-800' 
