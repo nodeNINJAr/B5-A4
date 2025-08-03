@@ -160,7 +160,7 @@ const book = data?.data;
               <div className="flex flex-col sm:flex-row gap-4">
                 {book.available ? (
                   <>
-                   <Link to={`/borrow/${book?._id}`}>
+                   <Link to={`/borrow/${book?._id}`} state={{initialData:{title:book?.title, copies:book?.copies}}}>
                     <button className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105">
                       <Book className="w-5 h-5" />
                       Borrow Book
