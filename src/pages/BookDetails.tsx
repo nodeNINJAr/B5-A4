@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router';
 import {useGetBookQuery } from '../redux/api/bookApi';
 import { ArrowLeft, Book, Calendar, CheckCircle, Clock, Hash,Tag, Users, XCircle } from 'lucide-react';
 import Loader from '../components/modules/loader/Loader';
+import type { IBook } from '../types';
 
 
 
@@ -9,11 +10,16 @@ import Loader from '../components/modules/loader/Loader';
 // 
 const BookDetails = () => {
 
-const { id } = useParams<{ id:string}>();
-const { data, isLoading } = useGetBookQuery(id);
+const { id } = useParams<{ id: string }>();
 
-  // 
-  const book = data?.data;
+interface BookApiResponse {
+  data: IBook;
+}
+
+const { data, isLoading } = useGetBookQuery(id ?? "") as { data?: BookApiResponse; isLoading: boolean };
+
+// 
+const book = data?.data;
 
 
 
@@ -29,7 +35,7 @@ const { data, isLoading } = useGetBookQuery(id);
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="w-full sm:max-w-7xl mx-auto px-1 sm:px-6 lg:px-8 py-4">
          <Link to={"/books"}> <button 
             className="cursor-pointer flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 font-medium"
           >
@@ -125,7 +131,7 @@ const { data, isLoading } = useGetBookQuery(id);
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Publishe Year</p>
-                    <p className="font-semibold text-gray-900">{book.publishedYear || 'Unknown'}</p>
+                    <p className="font-semibold text-gray-900">Unknown</p>
                   </div>
                 </div>
 

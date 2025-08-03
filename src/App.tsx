@@ -28,11 +28,11 @@ function App() {
       {/*  */}
     <div className=' bg-gradient-to-br from-blue-50 via-white to-indigo-50'>
       {/* navbar */}
-      <nav className='container px-6 py-8'>
+      <nav className='container px-2 md:px-6 py-8'>
           <Navbar/>
       </nav>
         {/* main */}
-      <main className='container mx-auto min-h-dvh px-6'>
+      <main className='container mx-auto min-h-dvh px-2 md:px-6 '>
          <Outlet/>
       </main>
       {/* footer */}

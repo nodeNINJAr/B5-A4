@@ -8,8 +8,8 @@ const BooksTable = ({ books }: { books: IBook[] }) => {
 
     // 
     return (
-        <div className="overflow-x-auto mt-8">
-        <table className="table text-[#121212]">
+        <div className="overflow-x-scroll mt-8">
+        <table className="table text-[#121212] w-full">
             {/* head */}
             <thead className='mb-3'>
             <tr className='text-[#121212]'>

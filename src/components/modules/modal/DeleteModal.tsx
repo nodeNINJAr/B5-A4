@@ -7,7 +7,7 @@ type DeleteModalProps = {
   isLoading:boolean;
 };
 
-const DeleteModal = ({ handleDelete,isLoading }: DeleteModalProps) => {
+const DeleteModal = ({ handleDelete,isLoading}: DeleteModalProps) => {
     // 
   return (
     <div>

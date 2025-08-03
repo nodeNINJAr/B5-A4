@@ -6,7 +6,7 @@ interface SearchBarProps {
   searchTerm: string;
   onSearchChange: (term: string) => void;
   selectedGenre: string;
-  onGenreChange: (term:string) => void;
+ onGenreChange: (term: "ALL" | "FANTASY" | "BIOGRAPHY" | "HISTORY" | "SCIENCE" | "NON_FICTION" | "FICTION") => void;
 }
 
 const genres = ["ALL" , "FANTASY" , "BIOGRAPHY" , "HISTORY" , "SCIENCE" , "NON_FICTION" , "FICTION"];
@@ -44,8 +44,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <select
             value={selectedGenre}
-            onChange={(e) => onGenreChange(e.target.value)}
-            className="text-gray-800 pl-10 pr-8 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white min-w-[150px]"
+            onChange={(e) => onGenreChange(e.target.value as "ALL" | "FANTASY" | "BIOGRAPHY" | "HISTORY" | "SCIENCE" | "NON_FICTION" | "FICTION")}
+            className=" w-full  sm:w-min text-gray-800 pl-10 pr-8 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white min-w-[150px]"
           >
             {genres.map(genre => (
               <option key={genre} value={genre}>

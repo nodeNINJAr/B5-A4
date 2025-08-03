@@ -6,7 +6,7 @@ import type {IBooks } from "../../types";
 // Create the API
 export const bookApi = createApi({
   reducerPath: 'bookApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_BASE_API}` }),
   tagTypes: ['book',"borrow"],
   endpoints: (builder) => ({
 
@@ -15,8 +15,6 @@ getBooks: builder.query< IBooks , { genre?: string; search?: string }>({
   query: ({ genre = "ALL", search = "" } = {}) => {
     const params = new URLSearchParams();
       
-    console.log(genre, search);
-
     if (genre && genre !== "ALL") {
       params.append("genre", genre);
     }

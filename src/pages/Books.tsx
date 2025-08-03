@@ -29,11 +29,10 @@ const Books = () => {
     return <Loader/>
   }
 
-console.log(books);
 
   // 
   return (
-    <div>
+    <div className='pb-14'>
         <div className='flex justify-between gap-5 items-center'><h2 className='text-2xl text-black font-bold'>All Books Here</h2> <Link to={"/create-book"}><button className='btn btn-accent font-bold'>Add Books</button></Link></div>
          
          {/* search bar */}
@@ -46,9 +45,9 @@ console.log(books);
 
          {/*  */}
           {(books?.data && books.data.length > 0) ? (
-            <>
+            <div className='overflow-x-auto'>
               <BooksTable books={books.data} />
-            </>
+            </div>
           ) : (
              
             <div className="text-center py-12">

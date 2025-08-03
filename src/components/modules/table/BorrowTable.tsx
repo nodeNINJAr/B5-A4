@@ -6,7 +6,7 @@ const BorrowTable = ({ borrowData }: IBorrowTable) => {
    
     // 
   return (
-   <div className="overflow-x-auto">
+   <div className="overflow-x-scroll">
   <table className="table  text-[#121212]">
     {/* head */}
     <thead className="text-[#121212] bg-blue-100">

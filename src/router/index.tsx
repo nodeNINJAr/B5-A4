@@ -5,6 +5,7 @@ import CreateBooks from "../pages/CreateBooks";
 import BookDetails from "../pages/BookDetails";
 import BorrowSummary from "../pages/BorrowSummary";
 import LandingPage from "../pages/LandingPage";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         {
           path:'/borrow-summary',
           Component:BorrowSummary,  
+        },
+        {
+          path:"*",
+          Component:NotFound,
         }
     ]
   },
