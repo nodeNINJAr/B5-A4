@@ -15,7 +15,7 @@ const {data, isLoading} = useGetBorrowdBooksQuery(undefined);
   // 
   return (
     <div>   
-       <h2 className='text-center text-3xl mt-6 mb-8 text-[#121212]'> Borrow Book Summary</h2>
+       <h2 className='text-center text-3xl mt-6 mb-8 text-[#121212] font-bold'> Borrow Book Summary</h2>
       {data?.data?.length > 0 ? 
           <BorrowTable borrowData={data}/>
           :

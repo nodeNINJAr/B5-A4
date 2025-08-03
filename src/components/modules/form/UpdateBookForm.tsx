@@ -3,6 +3,8 @@ import { useForm, type FieldValues, type SubmitHandler } from 'react-hook-form';
 import { useUpdateBookMutation } from '../../../redux/api/bookApi';
 import { useLocation, useParams } from 'react-router';
 import { Loader2 } from 'lucide-react';
+import { useAppDispatch } from '../../../hooks/hooks';
+import { showTimedAlert } from '../../lib/alertActions';
 
 
 const UpdateBookForm = () => {
@@ -12,7 +14,7 @@ const {id} = useParams();
 const {state} = useLocation();
 const initialData = state.initialData;
 
-
+const disPatch = useAppDispatch();
  // 
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
   //RTK Query UPDATE Hook    
@@ -35,13 +37,15 @@ const initialData = state.initialData;
     // 
     try {
       data.copies = parseInt(data.copies);
-      await updateBook({ id: id || initialData._id, ...data }).unwrap();
+      const {message} = await updateBook({ id: id || initialData._id, ...data }).unwrap();
       reset();
-      alert('Book updated!');
+      disPatch(showTimedAlert(message,"success"))
    
-    } catch (err) {
-      console.error(err);
-      alert('Failed to update book.');
+    } catch (err:any) {
+      const errorMessage =
+      err?.data?.error ||
+      'Something went wrong. Please try again.';
+      disPatch(showTimedAlert(errorMessage,"error"))
     }
   };
 

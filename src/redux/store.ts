@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { bookApi } from "./api/bookApi";
 import bookReducer from "./features/bookSlice"
+import alertReducer from "./features/alertSlice"
 
 
 
@@ -8,7 +9,8 @@ export const store = configureStore({
       reducer:{
             // 
           [bookApi.reducerPath] : bookApi.reducer,
-          bookManagement:bookReducer
+          bookManagement:bookReducer,
+          alert:alertReducer,
       },
       // middleware
       middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bookApi.middleware),

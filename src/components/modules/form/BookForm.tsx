@@ -3,6 +3,8 @@ import { useAddBookMutation } from '../../../redux/api/bookApi';
 import { useNavigate } from 'react-router';
 import type { IBookForm } from '../../../types';
 import Loader from '../loader/Loader';
+import { useAppDispatch } from '../../../hooks/hooks';
+import { showTimedAlert } from '../../lib/alertActions';
 
 
 
@@ -15,6 +17,8 @@ const BookForm = () => {
     },
   });
 
+const disPatch = useAppDispatch();
+
   
   //   
   const [addBook, { isLoading }] = useAddBookMutation();
@@ -25,14 +29,17 @@ const BookForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // 
     try {
-      await addBook(data).unwrap();
-      alert('Book added successfully!');
+      const value = await addBook(data).unwrap();
+      disPatch(showTimedAlert(value.message,"success"));
       reset();
       navigate('/books')
 
-    } catch (err) {
-      console.error(err);
-      alert('Failed to add book.');
+    } catch (err:any) {
+     const errorMessage =
+      err?.data?.message ||
+      err?.message ||
+      'Something went wrong. Please try again.';
+      disPatch(showTimedAlert(errorMessage,"error"));
     }
   };
 

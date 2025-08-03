@@ -2,6 +2,8 @@ import { useForm, type FieldValues, type SubmitHandler } from 'react-hook-form';
 import { useBorrowBookMutation } from '../../../redux/api/bookApi';
 import { Loader2 } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router';
+import { useAppDispatch } from '../../../hooks/hooks';
+import { showTimedAlert } from '../../lib/alertActions';
 
 
 // 
@@ -25,7 +27,8 @@ const BorrowBookForm = ({ bookId }: { bookId: string }) => {
   // location
   const {state} = useLocation();  
   const navigate = useNavigate();
-
+// 
+const disPatch = useAppDispatch();
 
 
 
@@ -39,13 +42,15 @@ const BorrowBookForm = ({ bookId }: { bookId: string }) => {
         quantity: parseInt(data.quantity),
         book: bookId,
       };
-      await borrowBook(payload).unwrap();
-      alert('Book borrowed successfully!');
+      const {message}= await borrowBook(payload).unwrap();
+      disPatch(showTimedAlert(message,"success"))
       reset();
       navigate("/borrow-summary")
-    } catch (err) {
-      console.error(err);
-      alert('Failed to borrow book');
+    } catch (err:any) {
+       const errorMessage =
+      err?.data?.error ||
+      'Something went wrong. Please try again.';
+      disPatch(showTimedAlert(errorMessage,"error"))
     }
   };
 
